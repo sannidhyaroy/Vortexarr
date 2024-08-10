@@ -1,0 +1,14 @@
+---
+name: vortexarr
+
+services:
+  vortexarr:
+    image: ghcr.io/sannidhyaroy/vortexarr:latest
+    container_name: vortexarr
+    restart: unless-stopped
+    environment:
+      - DOMAINS=${DOMAINS}
+      - TOKEN=${TOKEN}
+      - IP=${IP}
+      - UPDATE_INTERVAL=${UPDATE_INTERVAL:-300}
+...

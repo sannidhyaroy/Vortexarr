@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Configuration from environment variables
+DOMAINS="${DOMAINS}"
+TOKEN="${TOKEN}"
+IP="${IP}"
+
+# Prepare the URL
+URL="https://www.duckdns.org/update?domains=${DOMAINS}&token=${TOKEN}"
+
+# Append IP if provided
+if [ -n "$IP" ]; then
+  URL="${URL}&ip=${IP}"
+fi
+
+# Perform the DuckDNS update
+curl -k -o /var/log/ddns/duckdns.log -K <(echo "url=${URL}")
